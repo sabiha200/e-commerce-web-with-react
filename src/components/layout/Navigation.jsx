@@ -41,19 +41,7 @@ export const Navigation = () => {
         <div >
           <ul className='flex gap-4'>
             <li>
-              <Link to="/" className='flex gap-1 items-end relative text-secondary'> 
-              <span className='w-4 h-4 lg:w-5 lg:h-5 rounded-full text-xs lg:text-sm bg-brand text-white flex items-center justify-center absolute -top-1 -right-2 lg:-top-2 lg:right-6'>0</span> 
-              <IoCartOutline className='text-2xl md:text-3xl text-primary' /> <span className='hidden lg:block'>Cart</span> 
-              </Link>
-            </li>
-            <li>
-              <Link to="/" className='flex gap-1 items-end relative text-secondary'> 
-              <span className='w-4 h-4 lg:w-5 lg:h-5 rounded-full text-xs lg:text-sm bg-brand text-white flex items-center justify-center absolute -top-1 -right-2 lg:-top-2 lg:right-6'>0</span> 
-              <IoCartOutline className='text-2xl md:text-3xl text-primary' /> <span className='hidden lg:block'>Cart</span> 
-              </Link>
-            </li>
-            <li>
-              <Link to="/" className='flex gap-1 items-end relative text-secondary'> 
+              <Link to="/cart" className='flex gap-1 items-end relative text-secondary'> 
               <span className='w-4 h-4 lg:w-5 lg:h-5 rounded-full text-xs lg:text-sm bg-brand text-white flex items-center justify-center absolute -top-1 -right-2 lg:-top-2 lg:right-6'>0</span> 
               <IoCartOutline className='text-2xl md:text-3xl text-primary' /> <span className='hidden lg:block'>Cart</span> 
               </Link>
