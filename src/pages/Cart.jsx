@@ -1,8 +1,15 @@
 import React from "react";
 import Breadcramp from "../components/utils/Breadcramp";
 import CartItem from "../components/utils/CartItem";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
+  const cartData = useSelector((state) => state.cart.cart)
+  let sum = 0;
+  cartData.forEach(item => {
+    sum  += item.quantity * item.productData.prices
+    
+  });
   return (
     <section>
       <div className="py-8 border border-[#CACACA]">
@@ -24,9 +31,11 @@ const Cart = () => {
               <th className="bg-[#e9e8e8] py-4 text-base">Subtotal</th>
             </tr>
             <tbody>
-              <CartItem />
-              <CartItem />
-              <CartItem />
+              {
+                cartData.map((item)=>(
+                  <CartItem key={item.productData.id} data={item}/>
+                ))
+              }
             </tbody>
           </table>
           <div className="w-3/12 px-16 pt-4 pb-12 bg-[#e9e8e8] text-center h-fit">
@@ -39,8 +48,8 @@ const Cart = () => {
                 <div>Total</div>
               </div>
               <div className="text-secondary">
-                <div className="pb-4">BDT. 34523</div>
-                <div>BDT. 34523</div>
+                <div className="pb-4">${sum}</div>
+                <div>${sum}</div>
               </div>
             </div>
           </div>

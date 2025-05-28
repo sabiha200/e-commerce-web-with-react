@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     username: "",
     email: "",
     password: "",
-    // role: "USER",
   });
 
   const handelSignup = async (e) => {
     e.preventDefault();
+    console.log(userData);
 
     const options = {
       method: "POST",
@@ -24,15 +26,27 @@ const Signup = () => {
     };
 
     try {
-      const { data } = await axios.request(options);
-      console.log(data);
+      const res = await axios.request(options);
+      console.log();
+      toast.success(res.data.message)
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } catch (error) {
-      console.error(error);
+      toast.error(error.response.data.message);
+      console.error(error.response.data.errors);
     }
   };
 
   return (
     <section className="h-screen flex justify-center items-center">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        rtl={false}
+        pauseOnHover
+        theme="dark"
+      />
       <form
         onSubmit={handelSignup}
         className="max-w-md bg-white shadow-2xl rounded-2xl overflow-hidden border-4 border-green-400 dark:border-green-600"
@@ -60,6 +74,7 @@ const Signup = () => {
                 name="username"
                 id="username"
                 type="text"
+                required
               />
             </div>
             <div className="mt-8">
@@ -78,6 +93,7 @@ const Signup = () => {
                 name="email"
                 id="email"
                 type="email"
+                required
               />
             </div>
             <div className="mt-6">
@@ -96,6 +112,7 @@ const Signup = () => {
                 name="password"
                 id="password"
                 type="password"
+                required
               />
             </div>
             <div className="mt-10">

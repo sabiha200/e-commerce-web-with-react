@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import { AiOutlineAppstore } from "react-icons/ai";
 import { CiLocationOn } from "react-icons/ci";
-import { FaChevronDown, FaFacebook } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { GoPerson } from "react-icons/go";
-import { IoIosSearch, IoLogoFacebook, IoLogoTwitter } from "react-icons/io";
+import { IoIosSearch } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { MdCancel } from "react-icons/md";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export const Navigation = () => {
   const [show, setShow] = useState(false);
   const [sideBar, setSidebar] = useState(false);
+  const userData = useSelector((state) => state.user.user);
+  const cartData = useSelector((state) => state.cart.cart)
+  console.log(userData);
   return (
     <header className="relative shadow-lg">
       {/*Header Top Part*/}
@@ -55,18 +59,33 @@ export const Navigation = () => {
                   className="flex gap-1 items-end relative text-secondary"
                 >
                   <span className="w-4 h-4 lg:w-5 lg:h-5 rounded-full text-xs lg:text-sm bg-brand text-white flex items-center justify-center absolute -top-1 -right-2 lg:-top-2 lg:right-6">
-                    0
+                    {cartData.length}
                   </span>
                   <IoCartOutline className="text-2xl md:text-3xl text-primary" />{" "}
                   <span className="hidden lg:block">Cart</span>
                 </Link>
               </li>
               <li>
-                <Link to="/login">Login</Link>
+                {userData ? (
+                  <>
+                    <div className="userImage overflow-hidden w-[25px] h-[25px] rounded-full bg-gray-200">
+                      {userData.avatar?.url && (
+                        <img src={userData?.avatar?.url} alt="user profile" />
+                      )}
+                    </div>
+                    <h2 className="text-xl font-medium text-black">
+                      {userData?.username}
+                    </h2>
+                  </>
+                ) : (
+                  <Link to="/login" className="text-secondary font-semibold">
+                    Login
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
-        </div> 
+        </div>
         {/*Main manu mobile view*/}
         <nav
           className={`h-screen bg-[#00000075] w-full absolute top-0 left-0 fixed ${
@@ -107,7 +126,7 @@ export const Navigation = () => {
                   </li>
                   <li className="w-full">
                     <Link
-                      to="/"
+                      to="/about"
                       className="block py-3 border-b border-[#ececec]"
                     >
                       {" "}
@@ -151,7 +170,7 @@ export const Navigation = () => {
                     </Link>
                   </li>
                   <li className="w-full">
-                    <Link to="/" className="block py-3">
+                    <Link to="/contact" className="block py-3">
                       {" "}
                       Contact{" "}
                     </Link>
@@ -230,13 +249,13 @@ export const Navigation = () => {
               </Link>
             </li>
             <li>
-              <Link to="/" className="hover:text-brand translation">
+              <Link to="/about" className="hover:text-brand translation">
                 {" "}
                 About{" "}
               </Link>
             </li>
             <li>
-              <Link to="/shop" className="hover:text-brand translation">
+              <Link to="./shop" className="hover:text-brand translation">
                 {" "}
                 Shop{" "}
               </Link>
@@ -260,7 +279,7 @@ export const Navigation = () => {
               </Link>
             </li>
             <li>
-              <Link to="/" className="hover:text-brand translation">
+              <Link to="/contact" className="hover:text-brand translation">
                 {" "}
                 Contact{" "}
               </Link>

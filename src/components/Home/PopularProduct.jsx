@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ProductItem } from "../utils/ProductItem";
+import axios from "axios";
 
 export const PopularProduct = () => {
+  const [productList, setProductList] = useState([]);
+  useEffect(() => {
+    const api = async () => {
+      const options = {
+        method: "GET",
+        url: "https://api.escuelajs.co/api/v1/products",
+        params: { page: "1", limit: "10" },
+        headers: { accept: "application/json" },
+      };
+
+      try {
+        const res = await axios.request(options);
+        console.log("Full API response:", res.data);
+        setProductList(res.data);
+      } catch (error) {
+        console.error(error.response?.data || error.message);
+      }
+    };
+    api();
+  }, []);
+  productList.length = 10;
   return (
     <section>
       <div className="container">
@@ -29,16 +51,9 @@ export const PopularProduct = () => {
           </ul>
         </div>
         <div className="py-11 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 overflow-x-auto gap-x-6 gap-y-8">
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
+          {productList.map((item) => (
+            <ProductItem key={item._id} data={item} />
+          ))}
         </div>
       </div>
     </section>

@@ -1,13 +1,80 @@
 import React from "react";
 import { CiLocationOn } from "react-icons/ci";
-import { FaFacebook} from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 import { LiaPhoneVolumeSolid } from "react-icons/lia";
 import { Link } from "react-router";
+import { Subscribe } from "../utils/Subscribe";
 
 export const Footer = () => {
   return (
     <footer>
       <div className="container">
+        <div className="">
+          <Subscribe/>
+        </div>
+        <div className="bg-white py-10">
+          <div className="mx-auto">
+            <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex items-center gap-4 bg-[#f4f6fb] p-4 rounded-xl  sm:w-64 shadow-sm">
+                <img
+                  src="/icon-1.svg"
+                  alt="discount"
+                  className="w-10 h-10"
+                />
+                <div>
+                  <h4 className="font-semibold text-base">
+                    Best prices & offers
+                  </h4>
+                  <p className="text-gray-500 text-sm">Orders $50 or more</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 bg-[#f4f6fb] p-4 rounded-xl w-full sm:w-64 shadow-sm">
+                <img
+                  src="/icon-2.svg"
+                  alt="delivery"
+                  className="w-10 h-10"
+                />
+                <div>
+                  <h4 className="font-semibold text-base">Free delivery</h4>
+                  <p className="text-gray-500 text-sm">24/7 amazing services</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 bg-[#f4f6fb] p-4 rounded-xl w-full sm:w-64 shadow-sm">
+                <img src="/icon-3.svg" alt="deal" className="w-10 h-10" />
+                <div>
+                  <h4 className="font-semibold text-base">Great daily deal</h4>
+                  <p className="text-gray-500 text-sm">When you sign up</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 bg-[#f4f6fb] p-4 rounded-xl w-full sm:w-64 shadow-sm">
+                <img
+                  src="/icon-4.svg"
+                  alt="assortment"
+                  className="w-10 h-10"
+                />
+                <div>
+                  <h4 className="font-semibold text-base">Wide assortment</h4>
+                  <p className="text-gray-500 text-sm">Mega Discounts</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 bg-[#f4f6fb] p-4 rounded-xl w-full sm:w-64 shadow-sm">
+                <img
+                  src="/icon-5.svg"
+                  alt="returns"
+                  className="w-10 h-10"
+                />
+                <div>
+                  <h4 className="font-semibold text-base">Easy returns</h4>
+                  <p className="text-gray-500 text-sm">Within 30 days</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-20">
           <div>
             <img src="/logo.png" alt="logo" />
@@ -243,7 +310,9 @@ export const Footer = () => {
                 </ul>
               </div>
             </div>
-            <p className="font-normal text-secondary">Up to 15% discount on your first subscribe</p>
+            <p className="font-normal text-secondary">
+              Up to 15% discount on your first subscribe
+            </p>
           </div>
         </div>
       </div>

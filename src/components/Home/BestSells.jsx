@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -6,6 +6,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router";
 import { NextArrow, PrevArrow } from "../utils/SliderArrows";
 import { ProductItem } from "../utils/ProductItem";
+import axios from "axios";
 
 export const BestSells = () => {
   const settings = {
@@ -14,7 +15,7 @@ export const BestSells = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    prevArrow: <PrevArrow customStyle="absolute  top-40  left-5" />,
+    prevArrow: <PrevArrow customStyle="absolute  top-40 left-5" />,
     nextArrow: <NextArrow customStyle=" absolute top-40 right-5" />,
     responsive: [
       {
@@ -50,6 +51,26 @@ export const BestSells = () => {
       },
     ],
   };
+  const [productList, setProductList] = useState([]);
+  useEffect(() => {
+    const api = async () => {
+      const options = {
+        method: "GET",
+        url: "https://api.escuelajs.co/api/v1/products",
+        params: { page: "2", limit: "10" },
+        headers: { accept: "application/json" },
+      };
+
+      try {
+        const res = await axios.request(options);
+        console.log("Full API response:", res.data);
+        setProductList(res.data);
+      } catch (error) {
+        console.error(error.response?.data || error.message);
+      }
+    };
+    api();
+  }, []);
   return (
     <section className="pb-12">
       <div className="container relative">
@@ -83,124 +104,13 @@ export const BestSells = () => {
               <FaArrowRight />
             </Link>
           </div>
-          <div className="className='xl:w-[75%] overflow-x-auto md:w-full">
+          <div className="xl:w-[75%] overflow-x-auto md:w-full">
             <Slider {...settings}>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
-              <div className="px-2 xl:px-4">
-                <ProductItem />
-              </div>
+              {productList.map((item) => (
+                <div className="px-2 xl:px-4">
+                  <ProductItem key={item._id} data={item} />
+                </div>
+              ))}
             </Slider>
           </div>
         </div>
