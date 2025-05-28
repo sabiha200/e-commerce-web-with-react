@@ -4,7 +4,7 @@ import { Home } from "./pages/Home";
 import { Shop } from "./pages/Shop";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
-import LogIn from "./pages/logIn";
+import LogIn from "./pages/LogIn";
 import Signup from "./pages/Signup";
 import Contact from "./pages/contact";
 import About from "./pages/About";
