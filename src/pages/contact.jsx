@@ -131,7 +131,8 @@ const Contact = () => {
           </div>
         </div>
         <div className="flex flex-col md:flex-row md:gap-12">
-          <div className="md:max-w-[890px] w-fit  md:pl-36 py-15   ">
+          <div className="shadow-[0_10px_50px_rgba(0,0,0,0.1)] pr-4 m-7">
+            <div className="md:max-w-[890px] w-fit md:pl-36 py-15   ">
             <h2 className="text-2xl font-semibold text-brand mb-4">
               Contact Us
             </h2>
@@ -205,6 +206,7 @@ const Contact = () => {
                 </button>
               </div>
             </form>
+          </div>
           </div>
           <div className=" md:pr-36 md:py-15  ">
             <img src="/contact-2.png" alt="contact-2" className="w-fit" />
